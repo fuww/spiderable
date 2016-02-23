@@ -75,6 +75,8 @@ WebApp.connectHandlers.use(function (req, res, next) {
       var absoluteUrl = Meteor.absoluteUrl();
     }
 
+    absoluteUrl = absoluteUrl.replace(/:\/\/[^:/]+/, '://' + req.headers.host);
+
     var url = Spiderable._urlForPhantom(absoluteUrl , req.url);
 
     // This string is going to be put into a bash script, so it's important
